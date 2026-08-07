@@ -1,0 +1,37 @@
+{
+  "name": "template-provider",
+  "version": "1.2.1",
+  "description": "CLI to build for appjs, the endpoints",
+  "keywords": [
+    "cli",
+    "scaffold",
+    "templates",
+    "node",
+    "project-generator"
+  ],
+  "dependencies": {
+    "discover-from-knowledge": "^1.2.1",
+    "express-fix-any-js": "^1.28.7"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "bin": {
+    "template-provider": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "homepage": "https://cli.keshavsoft.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keshavsoft/template-provider"
+  },
+  "bugs": {
+    "url": "https://github.com/keshavsoft/template-provider/issues"
+  }
+}
