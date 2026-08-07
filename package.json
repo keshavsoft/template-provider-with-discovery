@@ -1,6 +1,6 @@
 {
-  "name": "template-provider",
-  "version": "1.2.1",
+  "name": "template-provider-with-discovery",
+  "version": "1.2.2",
   "description": "CLI to build for appjs, the endpoints",
   "keywords": [
     "cli",
@@ -18,7 +18,7 @@
     ".": "./index.js"
   },
   "bin": {
-    "template-provider": "./bin/cli.js"
+    "template-provider-with-discovery": "./bin/cli.js"
   },
   "files": [
     "bin/",
@@ -29,9 +29,9 @@
   "homepage": "https://cli.keshavsoft.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/keshavsoft/template-provider"
+    "url": "https://github.com/keshavsoft/template-provider-with-discovery"
   },
   "bugs": {
-    "url": "https://github.com/keshavsoft/template-provider/issues"
+    "url": "https://github.com/keshavsoft/template-provider-with-discovery/issues"
   }
 }
