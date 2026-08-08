@@ -14,6 +14,9 @@
     "express-fix-any-js": "^1.28.7",
     "pattern-collector-base-files": "^1.4.3"
   },
+  "devDependencies": {
+    "ks-delete-workflow-runs": "^1.0.0"
+  },
   "type": "module",
   "exports": {
     ".": "./index.js"
