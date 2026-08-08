@@ -1,5 +1,8 @@
 import discover from "discover-from-knowledge";
 import fixAnyJs from "express-fix-any-js";
+import {
+    outputStructureJson as getOutputStructureJson
+} from "pattern-collector-base-files";
 
 import getSourcePath from "./getSourcePath.js";
 import getDestinationPath from "./getDestinationPath.js";
@@ -8,12 +11,14 @@ import copyTemplate from "./copyTemplate.js";
 export default ({ raka, poka, toPath, alterArray }) => {
     const discovery = discover(toPath);
 
+    const outputStructureJson = { ...getOutputStructureJson() };
+
     if (!discovery.success) {
-        return {
-            success: false,
-            discovery,
-            message: "Unable to discover project type."
-        };
+        outputStructureJson.KTF = false;
+        outputStructureJson.KReason = "Unable to discover project type.";
+        outputStructureJson.discovery = discovery;
+
+        return outputStructureJson;
     }
 
     const fileType = discovery.discovery.fileType;
@@ -38,14 +43,25 @@ export default ({ raka, poka, toPath, alterArray }) => {
         });
     }
 
-    return {
-        success: true,
-        discovery,
-        template: {
-            source,
-            destination,
-            copied: templateCopied
-        },
-        modification
+    outputStructureJson.KTF = true;
+    outputStructureJson.discovery = discovery;
+    outputStructureJson.template = {
+        source,
+        destination,
+        copied: templateCopied
     };
+    outputStructureJson.modification = modification;
+
+    return outputStructureJson;
+
+    // return {
+    //     success: true,
+    //     discovery,
+    //     template: {
+    //         source,
+    //         destination,
+    //         copied: templateCopied
+    //     },
+    //     modification
+    // };
 };
