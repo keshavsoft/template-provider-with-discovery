@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Generator Flow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="./index.html" class="logo">
+            <span>template-provider-with-discovery</span> 🚀
+        </a>
+
+        <div class="nav-links">
+            <a href="./index.html">Home</a>
+            <a href="./how-to-use.html">How To Use</a>
+        </div>
+    </nav>
+
+    <section class="card">
+
+        <h1>⚙ Generator Flow</h1>
+
+        <p>
+            Every folder inside the <strong>test</strong> directory contains its own
+            <strong>test.js</strong> file.
+        </p>
+
+        <p>
+            Running a particular <strong>test.js</strong> demonstrates one feature of
+            the template generator. Instead of manually creating folders,
+            routes, APIs, and endpoint files, the generator creates them
+            automatically.
+        </p>
+
+    </section>
+
+    <!-- ====================================================== -->
+
+    <section class="card">
+
+        <h2>1️⃣ fromAppJs</h2>
+
+<pre><code>
+test/
+ └── v6/
+      └── fromAppJs/
+            ├── app.js
+            └── test.js
+</code></pre>
+
+        <h3>Run</h3>
+
+<pre><code>
+node test/v6/fromAppJs/test.js
+</code></pre>
+
+        <h3>Purpose</h3>
+
+        <p>
+            Reads the application's <strong>app.js</strong> file and automatically
+            generates the complete API folder structure.
+        </p>
+
+        <h3>Generated Output</h3>
+
+<pre><code>
+api/
+    v1/
+</code></pre>
+
+        <div class="feature-grid">
+
+            <div class="feature-box">
+                📂 Creates api folder
+            </div>
+
+            <div class="feature-box">
+                📁 Creates version folders
+            </div>
+
+            <div class="feature-box">
+                ⚙ Reads app.js
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ====================================================== -->
+
+    <section class="card">
+
+        <h2>2️⃣ fromEndPointsJs</h2>
+
+<pre><code>
+test/
+ └── v6/
+      └── fromEndPointsJs/
+            └── test.js
+</code></pre>
+
+        <h3>Run</h3>
+
+<pre><code>
+node test/v6/fromEndPointsJs/test.js
+</code></pre>
+
+        <h3>Purpose</h3>
+
+        <p>
+            Reads an existing <strong>end-points.js</strong> file and automatically
+            generates CRUD endpoint methods.
+        </p>
+
+        <h3>Generated Routes</h3>
+
+<pre><code>
+router.get("/showAll")
+router.get("/showOne/:id")
+router.post("/insert")
+router.put("/update/:id")
+router.delete("/delete/:id")
+</code></pre>
+
+        <div class="feature-grid">
+
+            <div class="feature-box">
+                📥 GET
+            </div>
+
+            <div class="feature-box">
+                ➕ POST
+            </div>
+
+            <div class="feature-box">
+                ✏ PUT
+            </div>
+
+            <div class="feature-box">
+                ❌ DELETE
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ====================================================== -->
+
+    <section class="card">
+
+        <h2>3️⃣ fromRoutesJs</h2>
+
+<pre><code>
+test/
+ └── v6/
+      └── fromRoutesJs/
+            └── test.js
+</code></pre>
+
+        <h3>Run</h3>
+
+<pre><code>
+node test/v6/fromRoutesJs/test.js
+</code></pre>
+
+        <h3>Purpose</h3>
+
+        <p>
+            Generates API version routing automatically.
+        </p>
+
+<pre><code>
+api/
+    v1/
+    v2/
+    v3/
+</code></pre>
+
+        <p>
+            Each API version receives its own router configuration.
+        </p>
+
+        <div class="feature-grid">
+
+            <div class="feature-box">
+                🛣 Creates router.use()
+            </div>
+
+            <div class="feature-box">
+                📦 Creates Version Folder
+            </div>
+
+            <div class="feature-box">
+                🔄 Updates routes.js
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ====================================================== -->
+
+    <section class="card">
+
+        <h2>4️⃣ fromRoutesEnd</h2>
+
+<pre><code>
+test/
+ └── v6/
+      └── fromRoutesEnd/
+            └── test.js
+</code></pre>
+
+        <h3>Run</h3>
+
+<pre><code>
+node test/v6/fromRoutesEnd/test.js
+</code></pre>
+
+        <h3>Purpose</h3>
+
+        <p>
+            Creates a folder for every database table automatically.
+        </p>
+
+<pre><code>
+api/
+    v1/
+        bills/
+        items/
+        customers/
+        products/
+</code></pre>
+
+        <p>
+            Every table receives its own endpoint files and controller structure.
+        </p>
+
+        <div class="feature-grid">
+
+            <div class="feature-box">
+                📁 Creates Table Folder
+            </div>
+
+            <div class="feature-box">
+                📄 Creates end-points.js
+            </div>
+
+            <div class="feature-box">
+                ⚙ Ready for CRUD
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ====================================================== -->
+
+    <section class="card">
+
+        <h2>🚀 Complete Generation Flow</h2>
+
+<pre><code>
+Run test.js
+      │
+      ▼
+Read Existing Source
+      │
+      ▼
+Discover Patterns
+      │
+      ▼
+Generate API Folder
+      │
+      ▼
+Generate Version Folder
+      │
+      ▼
+Generate Table Folder
+      │
+      ▼
+Generate Routes
+      │
+      ▼
+Generate Endpoints
+      │
+      ▼
+Project Ready
+</code></pre>
+
+    </section>
+
+    <!-- ====================================================== -->
+
+    <section class="card">
+
+        <h2>📌 Summary</h2>
+
+        <table class="api-table">
+
+            <tr>
+                <th>Folder</th>
+                <th>What it Generates</th>
+            </tr>
+
+            <tr>
+                <td>fromAppJs</td>
+                <td>Creates API folder structure from app.js</td>
+            </tr>
+
+            <tr>
+                <td>fromEndPointsJs</td>
+                <td>Creates CRUD endpoint methods</td>
+            </tr>
+
+            <tr>
+                <td>fromRoutesJs</td>
+                <td>Creates version routing (v1, v2...)</td>
+            </tr>
+
+            <tr>
+                <td>fromRoutesEnd</td>
+                <td>Creates table folders and endpoint files</td>
+            </tr>
+
+        </table>
+
+    </section>
+
+</body>
+
+</html>
