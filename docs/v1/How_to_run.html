@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Generator Flow</title>
-    <link rel="stylesheet" href="How_to_run.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -14,97 +14,26 @@
             <span>template-provider-with-discovery</span> 🚀
         </a>
 
+        <div class="nav-links">
+            <a href="./index.html">Home</a>
+            <a href="./how-to-use.html">How To Use</a>
+        </div>
     </nav>
-
 
     <section class="card">
 
         <h1>⚙ Generator Flow</h1>
 
         <p>
-            Imagine you want to create a new API for a database table named
-            <strong>purchase</strong>. The final endpoint should look like this:
-        </p>
-
-        <pre><code>
-GET /api/v1/purchase/showAll
-</code></pre>
-
-        <p>
-            Although this appears to be a single URL, it is actually built from
-            several independent parts. Each part has its own purpose and is
-            generated step by step by the template generator.
-        </p>
-
-        <h2>📖 API Building Story</h2>
-
-        <div class="feature-grid">
-
-            <div class="feature-box">
-                <strong>Step 1</strong><br><br>
-                Create the <strong>api</strong> folder.<br>
-                This becomes the root directory for all REST APIs.
-            </div>
-
-            <div class="feature-box">
-                <strong>Step 2</strong><br><br>
-                Create the API version folder.<br>
-                Example:
-                <strong>v1</strong>,
-                <strong>v2</strong>,
-                <strong>v3</strong>.
-            </div>
-
-            <div class="feature-box">
-                <strong>Step 3</strong><br><br>
-                Create the table folder.<br>
-                Example:
-                <strong>purchase</strong>,
-                <strong>bills</strong>,
-                <strong>items</strong>.
-            </div>
-
-            <div class="feature-box">
-                <strong>Step 4</strong><br><br>
-                Generate endpoint files inside the table folder.
-            </div>
-
-            <div class="feature-box">
-                <strong>Step 5</strong><br><br>
-                Generate CRUD routes like
-                <strong>showAll</strong>,
-                <strong>insert</strong>,
-                <strong>update</strong>,
-                <strong>delete</strong>.
-            </div>
-
-            <div class="feature-box">
-                <strong>Step 6</strong><br><br>
-                Register every generated route automatically in Express routing.
-            </div>
-
-        </div>
-
-        <h2>📍 Final Result</h2>
-
-        <pre><code>
-api/
- └── v1/
-      └── purchase/
-            ├── end-points.js
-            ├── routes.js
-            ├── controller.js
-            └── showAll/
-
-GET /api/v1/purchase/showAll
-</code></pre>
-
-        <p>
-            This repository demonstrates each of these steps separately.
             Every folder inside the <strong>test</strong> directory contains its own
-            <strong>test.js</strong> file. Running a specific <strong>test.js</strong>
-            performs one stage of the API generation process, making it easy to
-            understand how the complete Express.js API structure is created.
+            <strong>test.js</strong> file.
+        </p>
+
+        <p>
+            Running a particular <strong>test.js</strong> demonstrates one feature of
+            the template generator. Instead of manually creating folders,
+            routes, APIs, and endpoint files, the generator creates them
+            automatically.
         </p>
 
     </section>
@@ -115,7 +44,7 @@ GET /api/v1/purchase/showAll
 
         <h2>1️⃣ fromAppJs</h2>
 
-        <pre><code>
+<pre><code>
 test/
  └── v6/
       └── fromAppJs/
@@ -125,7 +54,7 @@ test/
 
         <h3>Run</h3>
 
-        <pre><code>
+<pre><code>
 node test/v6/fromAppJs/test.js
 </code></pre>
 
@@ -138,7 +67,7 @@ node test/v6/fromAppJs/test.js
 
         <h3>Generated Output</h3>
 
-        <pre><code>
+<pre><code>
 api/
     v1/
 </code></pre>
@@ -163,7 +92,7 @@ api/
 
     <!-- ====================================================== -->
 
-    <!-- <section class="card">
+    <section class="card">
 
         <h2>2️⃣ fromEndPointsJs</h2>
 
@@ -217,15 +146,15 @@ router.delete("/delete/:id")
 
         </div>
 
-    </section> -->
+    </section>
 
     <!-- ====================================================== -->
 
     <section class="card">
 
-        <h2> 2️⃣ fromRoutesJs</h2>
+        <h2>3️⃣ fromRoutesJs</h2>
 
-        <pre><code>
+<pre><code>
 test/
  └── v6/
       └── fromRoutesJs/
@@ -234,7 +163,7 @@ test/
 
         <h3>Run</h3>
 
-        <pre><code>
+<pre><code>
 node test/v6/fromRoutesJs/test.js
 </code></pre>
 
@@ -244,7 +173,7 @@ node test/v6/fromRoutesJs/test.js
             Generates API version routing automatically.
         </p>
 
-        <pre><code>
+<pre><code>
 api/
     v1/
     v2/
@@ -277,9 +206,9 @@ api/
 
     <section class="card">
 
-        <h2> 3️⃣fromRoutesEnd</h2>
+        <h2>4️⃣ fromRoutesEnd</h2>
 
-        <pre><code>
+<pre><code>
 test/
  └── v6/
       └── fromRoutesEnd/
@@ -288,7 +217,7 @@ test/
 
         <h3>Run</h3>
 
-        <pre><code>
+<pre><code>
 node test/v6/fromRoutesEnd/test.js
 </code></pre>
 
@@ -298,7 +227,7 @@ node test/v6/fromRoutesEnd/test.js
             Creates a folder for every database table automatically.
         </p>
 
-        <pre><code>
+<pre><code>
 api/
     v1/
         bills/
@@ -335,7 +264,7 @@ api/
 
         <h2>🚀 Complete Generation Flow</h2>
 
-        <pre><code>
+<pre><code>
 Run test.js
       │
       ▼
