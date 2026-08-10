@@ -1,15 +1,15 @@
-# template-provider 🚀
+# template-provider-with-discovery 🚀
 
 > **Automatically generate, update, and organize Express.js routing files with safe, idempotent code generation.**
 
-[![npm version](https://img.shields.io/npm/v/template-provider.svg?style=flat-square)](https://www.npmjs.com/package/template-provider)
-[![License](https://img.shields.io/npm/l/template-provider.svg?style=flat-square)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/template-provider-with-discovery.svg?style=flat-square)](https://www.npmjs.com/package/template-provider-with-discovery)
+[![License](https://img.shields.io/npm/l/template-provider-with-discovery.svg?style=flat-square)](LICENSE)
 
 ---
 
 # 📖 Overview
 
-`template-provider` is a lightweight developer utility that automatically generates and updates Express.js routing files.
+`template-provider-with-discovery` is a lightweight developer utility that automatically generates and updates Express.js routing files.
 
 It safely inserts router imports, endpoint methods, version routes, and table routes while preventing duplicate code generation.
 
@@ -79,7 +79,7 @@ Creates endpoint methods for Express routers.
 # 📦 Installation
 
 ```bash
-npm install template-provider
+npm install template-provider-with-discovery
 ```
 
 ---
@@ -90,7 +90,7 @@ Complete documentation is available here:
 
 **Documentation Portal**
 
-https://keshavsoft.github.io/template-provider/
+https://keshavsoft.github.io/template-provider-with-discovery/
 
 ---
 
