@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Project Documentation</title>
+
+<link rel="stylesheet" href="./css/about.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="block">
+<h2>📖 Project Overview</h2>
+
+<p>
+This project is built using a JSON Server as the backend database.
+Instead of using MySQL or MongoDB, all application data is stored inside
+multiple JSON files. Every table in the application belongs to one of
+these JSON files, making the project lightweight, easy to understand,
+and simple to maintain.
+</p>
+
+</div>
+
+<div class="block">
+
+<h2>📂 JSON Files</h2>
+
+<p>
+Each JSON file represents a collection of related data.
+For example, one file may contain all master tables, while another stores
+transaction data. Whenever an API is called, the server reads or writes
+information from these JSON files.
+</p>
+
+</div>
+
+<div class="block">
+
+<h2>📋 Tables</h2>
+
+<p>
+Every table inside the JSON file represents a specific business entity,
+such as Customers, Products, Employees, or Orders.
+Each table stores records in JSON format and acts like a database table.
+The APIs communicate directly with these tables to perform CRUD operations.
+</p>
+
+</div>
+
+<div class="block">
+
+<h2>🌐 APIs</h2>
+
+<p>
+The application exposes REST APIs for every table.
+These APIs allow the frontend or any external application to interact
+with the data. Every API has a clear purpose, such as fetching records,
+creating new entries, updating existing information, or deleting data.
+</p>
+
+</div>
+
+<div class="block">
+
+<h2>⚡ HTTP Methods</h2>
+
+<p>
+Each API uses standard HTTP methods.
+<b>GET</b> retrieves data,
+<b>POST</b> creates new records,
+<b>PUT</b> updates existing records,
+and <b>DELETE</b> removes unwanted records.
+Using these standard methods keeps the API consistent and easy to understand.
+</p>
+
+</div>
+
+<div class="block">
+
+<h2>💡 Developer Notes</h2>
+
+<p>
+Each section of this documentation explains one part of the project.
+Whenever a new table or API is added, simply create another block like
+this with a short explanation. This approach keeps the documentation
+clean, readable, and easy for any developer to understand without
+reading the entire source code.
+</p>
+
+</div>
+
+</div>
+
+</body>
+</html>
