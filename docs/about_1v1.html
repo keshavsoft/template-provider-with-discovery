@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express.js Routing & Table Documentation</title>
+    <style>
+        :root {
+            --bg: #f5f7fb;
+            --surface: #ffffff;
+            --text: #1f2937;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --soft: #eff6ff;
+            --code: #111827;
+            --success: #15803d;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 28px 20px;
+        }
+
+        .brand {
+            font-size: 21px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .brand-subtitle {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 28px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 9px 12px;
+            border-radius: 8px;
+            margin: 3px 0;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover {
+            background: #1e293b;
+            color: white;
+        }
+
+        .content {
+            margin-left: 280px;
+            width: calc(100% - 280px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb, #3b82f6);
+            color: white;
+            padding: 72px 8%;
+        }
+
+        .hero .label {
+            display: inline-block;
+            padding: 6px 12px;
+            border: 1px solid rgba(255, 255, 255, .35);
+            border-radius: 999px;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5vw, 58px);
+            line-height: 1.1;
+            margin: 0 0 18px;
+        }
+
+        .hero p {
+            max-width: 850px;
+            font-size: 18px;
+            color: #dbeafe;
+            margin: 0;
+        }
+
+        main {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 48px 32px 80px;
+        }
+
+        section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, .04);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 28px;
+            color: #0f172a;
+        }
+
+        h3 {
+            margin-top: 28px;
+            color: #1e3a8a;
+        }
+
+        p {
+            margin: 10px 0 16px;
+        }
+
+        .intro {
+            font-size: 17px;
+            color: #475569;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .info-card {
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .info-card strong {
+            display: block;
+            color: #0f172a;
+            margin-bottom: 5px;
+        }
+
+        .flow {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            white-space: pre;
+            line-height: 1.6;
+        }
+
+        code {
+            background: #eef2ff;
+            color: #3730a3;
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-family: Consolas, monospace;
+        }
+
+        pre {
+            background: var(--code);
+            color: #e5e7eb;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            line-height: 1.55;
+        }
+
+        .method {
+            display: inline-block;
+            min-width: 70px;
+            text-align: center;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 12px;
+            color: white;
+        }
+
+        .get {
+            background: #16a34a;
+        }
+
+        .post {
+            background: #2563eb;
+        }
+
+        .put {
+            background: #d97706;
+        }
+
+        .delete {
+            background: #dc2626;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border);
+            padding: 13px 14px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f1f5f9;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) td {
+            background: #fafafa;
+        }
+
+        .note {
+            border-left: 4px solid var(--primary);
+            background: var(--soft);
+            padding: 16px 18px;
+            border-radius: 8px;
+            margin: 18px 0;
+        }
+
+        .story {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .story strong {
+            color: #1d4ed8;
+        }
+
+        .summary-list {
+            padding-left: 22px;
+        }
+
+        .summary-list li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 20px 0 50px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 950px) {
+            .sidebar {
+                width: 220px;
+            }
+
+            .content {
+                margin-left: 220px;
+                width: calc(100% - 220px);
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .layout {
+                display: block;
+            }
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .hero {
+                padding: 48px 24px;
+            }
+
+            main {
+                padding: 25px 16px 50px;
+            }
+
+            section {
+                padding: 22px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+
+        <aside class="sidebar">
+            <div class="brand">Express.js Documentation</div>
+            <div class="brand-subtitle">Routing & Table Architecture</div>
+
+            <a href="#introduction">1. Introduction</a>
+            <a href="#express">2. What is Express.js?</a>
+            <a href="#routing">3. What is Routing?</a>
+            <a href="#why-routing">4. Why Different Routes?</a>
+            <a href="#tables">5. Tables in the Application</a>
+            <a href="#relationship">6. Table & Routing Relationship</a>
+            <a href="#methods">7. HTTP Methods</a>
+            <a href="#examples">8. Table-wise Examples</a>
+            <a href="#extra-routes">9. Additional Routes</a>
+            <a href="#flow">10. Complete Request Flow</a>
+            <a href="#summary">11. Summary</a>
+        </aside>
+
+        <div class="content">
+
+            <header class="hero">
+                <span class="label">Backend Architecture Documentation</span>
+                <h1>Express.js Routing & Table Documentation</h1>
+                <p>
+                    A simple, story-based explanation of how Express.js,
+                    routing, HTTP methods, and application tables work together.
+                </p>
+            </header>
+
+            <main>
+
+                <section id="introduction">
+                    <h2>1. Introduction</h2>
+
+                    <p class="intro">
+                        This documentation explains how the Express.js application is organized
+                        and how different routes are connected with different tables.
+                        The purpose is to make the backend structure easy to understand,
+                        especially for a developer who is new to the project.
+                    </p>
+
+                    <p>
+                        The application uses <a href="https://www.npmjs.com/package/route"><strong>Express.js</strong></a> as its backend framework.
+                        Express receives requests from the client, identifies the requested route,
+                        executes the required operation, communicates with the appropriate table or
+                        data source, and finally sends a response back to the client.
+                    </p>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <strong>Express.js</strong>
+                            Backend framework
+                        </div>
+                        <div class="info-card">
+                            <strong>Routing</strong>
+                            Directs requests
+                        </div>
+                        <div class="info-card">
+                            <strong>Methods</strong>
+                            Define operations
+                        </div>
+                        <div class="info-card">
+                            <strong>Tables</strong>
+                            Store application data
+                        </div>
+                    </div>
+
+                    <div class="note">
+                        <strong>Basic concept:</strong>
+                        Client → Route → Method → Table → Response
+                    </div>
+                </section>
+
+                <section id="express">
+                    <h2>2. What is Express.js?</h2>
+
+                    <p>
+                        Express.js is a lightweight web framework built on top of Node.js.
+                        It provides a simple way to create web servers, APIs, routes, and
+                        middleware.
+                    </p>
+
+                    <p>
+                        Instead of manually handling every incoming HTTP request,
+                        Express allows the application to define routes and specify
+                        what should happen when those routes are called.
+                    </p>
+
+                    <div class="flow">Client
+                        ↓
+                        Express Server
+                        ↓
+                        Route
+                        ↓
+                        Required Method
+                        ↓
+                        Table / Data Source
+                        ↓
+                        Response</div>
+
+                    <p>
+                        For example, when a client sends
+                        <code>GET /api/customers</code>, Express looks for the matching
+                        GET route and executes the logic associated with it.
+                    </p>
+                </section>
+
+                <section id="routing">
+                    <h2>3. What is Routing?</h2>
+
+                    <p>
+                        Routing means deciding what should happen when a particular
+                        URL and HTTP method are requested.
+                    </p>
+
+                    <p>
+                        A route normally consists of two important parts:
+                        the <strong>HTTP method</strong> and the <strong>URL path</strong>.
+                    </p>
+
+                    <pre>GET     /api/customers
+POST    /api/customers
+PUT     /api/customers/:id
+DELETE  /api/customers/:id</pre>
+
+                    <p>
+                        Although the GET and POST examples use the same URL,
+                        they perform different operations because the HTTP methods
+                        are different.
+                    </p>
+
+                    <div class="note">
+                        <strong>Routing in simple words:</strong>
+                        Routing tells Express which code should handle a particular request.
+                    </div>
+                </section>
+
+                <section id="why-routing">
+                    <h2>4. Why Do We Use Different Routes?</h2>
+
+                    <p>
+                        A real application normally contains many different types of data.
+                        For example, an application may contain Customers, Products,
+                        Orders, Employees, Suppliers, and Payments.
+                    </p>
+
+                    <p>
+                        Each type of data can have its own route group. This keeps the
+                        application organized and makes it easier to maintain.
+                    </p>
+
+                    <pre>/api/customers
+/api/products
+/api/orders
+/api/employees
+/api/suppliers
+/api/payments</pre>
+
+                    <p>
+                        Instead of placing every operation into one large file,
+                        the routes can be separated logically according to the
+                        table or business functionality they handle.
+                    </p>
+                </section>
+
+                <section id="tables">
+                    <h2>5. Tables in the Application</h2>
+
+                    <p>
+                        A table represents a particular type of data used by the application.
+                        The exact tables depend on the project, but a typical application
+                        may contain the following:
+                    </p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Customers</td>
+                                <td>Stores customer-related information.</td>
+                            </tr>
+                            <tr>
+                                <td>Products</td>
+                                <td>Stores product-related information.</td>
+                            </tr>
+                            <tr>
+                                <td>Orders</td>
+                                <td>Stores order-related information.</td>
+                            </tr>
+                            <tr>
+                                <td>Employees</td>
+                                <td>Stores employee-related information.</td>
+                            </tr>
+                            <tr>
+                                <td>Suppliers</td>
+                                <td>Stores supplier-related information.</td>
+                            </tr>
+                            <tr>
+                                <td>Payments</td>
+                                <td>Stores payment-related information.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="note">
+                        <strong>Project-specific note:</strong>
+                        Replace the example table names above with the actual tables
+                        used in the application.
+                    </div>
+                </section>
+
+                <section id="relationship">
+                    <h2>6. Table and Routing Relationship</h2>
+
+                    <p>
+                        The most important concept in this application is that one table
+                        can have multiple routes or methods.
+                    </p>
+
+                    <p>
+                        For example, the <strong>Customers</strong> table can be accessed
+                        using GET, POST, PUT, and DELETE operations.
+                    </p>
+
+                    <pre>Customers Table
+      ↓
+---------------------------
+GET
+POST
+PUT
+DELETE
+---------------------------</pre>
+
+                    <p>
+                        Therefore, one table does not necessarily mean one API endpoint.
+                        A single table may have several routes, with each route responsible
+                        for a different operation.
+                    </p>
+
+                    <div class="story">
+                        <strong>Example story:</strong>
+                        A user opens the customer screen and requests customer information.
+                        The client sends a GET request. Express receives it and identifies
+                        the Customers route. The route retrieves the required records from
+                        the Customers table and sends them back to the client. If the user
+                        creates a new customer, the client instead sends a POST request.
+                        The same Customers route group now performs a create operation.
+                    </div>
+                </section>
+
+                <section id="methods">
+                    <h2>7. HTTP Methods</h2>
+
+                    <h3><span class="method get">GET</span> Retrieve Data</h3>
+
+                    <p>
+                        GET is normally used to retrieve existing information.
+                    </p>
+
+                    <pre>GET /api/customers</pre>
+
+                    <div class="flow">Client
+                        ↓
+                        GET /api/customers
+                        ↓
+                        Customers Route
+                        ↓
+                        Customers Table
+                        ↓
+                        Customer Records
+                        ↓
+                        Response</div>
+
+                    <h3><span class="method post">POST</span> Create Data</h3>
+
+                    <p>
+                        POST is normally used to create a new record.
+                    </p>
+
+                    <pre>POST /api/customers</pre>
+
+                    <div class="flow">Client
+                        ↓
+                        POST /api/customers
+                        ↓
+                        Customers Route
+                        ↓
+                        Customers Table
+                        ↓
+                        New Customer Created
+                        ↓
+                        Response</div>
+
+                    <h3><span class="method put">PUT</span> Update Data</h3>
+
+                    <p>
+                        PUT is normally used to update an existing record.
+                    </p>
+
+                    <pre>PUT /api/customers/10</pre>
+
+                    <div class="flow">Client
+                        ↓
+                        PUT /api/customers/10
+                        ↓
+                        Customers Route
+                        ↓
+                        Find Customer 10
+                        ↓
+                        Update Customer
+                        ↓
+                        Customers Table
+                        ↓
+                        Response</div>
+
+                    <h3><span class="method delete">DELETE</span> Remove Data</h3>
+
+                    <p>
+                        DELETE is used to remove an existing record.
+                    </p>
+
+                    <pre>DELETE /api/customers/10</pre>
+
+                    <div class="flow">Client
+                        ↓
+                        DELETE /api/customers/10
+                        ↓
+                        Customers Route
+                        ↓
+                        Customers Table
+                        ↓
+                        Customer Deleted
+                        ↓
+                        Response</div>
+                </section>
+
+                <section id="examples">
+                    <h2>8. Table-wise Examples</h2>
+
+                    <h3>8.1 Customers Table</h3>
+
+                    <p>
+                        The Customers table is responsible for storing customer-related
+                        information. Different routes are provided to retrieve, create,
+                        update, and delete customer records.
+                    </p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Route</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="method get">GET</span></td>
+                                <td><code>/api/customers</code></td>
+                                <td>Get customer records.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="method get">GET</span></td>
+                                <td><code>/api/customers/:id</code></td>
+                                <td>Get one customer.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="method post">POST</span></td>
+                                <td><code>/api/customers</code></td>
+                                <td>Create a customer.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="method put">PUT</span></td>
+                                <td><code>/api/customers/:id</code></td>
+                                <td>Update a customer.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="method delete">DELETE</span></td>
+                                <td><code>/api/customers/:id</code></td>
+                                <td>Delete a customer.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>8.2 Products Table</h3>
+
+                    <p>
+                        The Products table contains product-related information.
+                        Its routes allow the application to manage product records.
+                    </p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Route</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="method get">GET</span></td>
+                                <td><code>/api/products</code></td>
+                                <td>Get product records.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="method get">GET</span></td>
+                                <td><code>/api/products/:id</code></td>
+                                <td>Get one product.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="method post">POST</span></td>
+                                <td><code>/api/products</code></td>
+                                <td>Create a product.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="method put">PUT</span></td>
+                                <td><code>/api/products/:id</code></td>
+                                <td>Update a product.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="method delete">DELETE</span></td>
+                                <td><code>/api/products/:id</code></td>
+                                <td>Delete a product.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>8.3 Orders Table</h3>
+
+                    <p>
+                        The Orders table contains information about customer orders.
+                        Different routes are used to manage order records.
+                    </p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Route</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="method get">GET</span></td>
+                                <td><code>/api/orders</code></td>
+                                <td>Get order records.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="method get">GET</span></td>
+                                <td><code>/api/orders/:id</code></td>
+                                <td>Get one order.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="method post">POST</span></td>
+                                <td><code>/api/orders</code></td>
+                                <td>Create an order.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="method put">PUT</span></td>
+                                <td><code>/api/orders/:id</code></td>
+                                <td>Update an order.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="method delete">DELETE</span></td>
+                                <td><code>/api/orders/:id</code></td>
+                                <td>Delete an order.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="extra-routes">
+                    <h2>9. Additional Routes</h2>
+
+                    <p>
+                        Not every table is limited to basic CRUD operations.
+                        Depending on the application's business requirements,
+                        a table may have additional routes.
+                    </p>
+
+                    <p>
+                        For example, the Orders table may provide routes such as:
+                    </p>
+
+                    <pre>GET /api/orders
+GET /api/orders/:id
+POST /api/orders
+PUT /api/orders/:id
+DELETE /api/orders/:id
+GET /api/orders/customer/:customerId
+GET /api/orders/status/:status</pre>
+
+                    <p>
+                        All of these routes may work with the same Orders data,
+                        but each route has a different purpose.
+                    </p>
+
+                    <div class="note">
+                        <strong>Important:</strong>
+                        When documenting the real application, count both the number
+                        of tables and the number of routes/methods associated with
+                        each table.
+                    </div>
+                </section>
+
+                <section id="flow">
+                    <h2>10. Complete Request Flow</h2>
+
+                    <p>
+                        The complete application flow can be understood through the
+                        following structure:
+                    </p>
+
+                    <div class="flow"> CLIENT
+                        │
+                        │ HTTP Request
+                        ↓
+                        EXPRESS SERVER
+                        │
+                        ↓
+                        ROUTER
+                        │
+                        ┌──────────┼──────────┐
+                        ↓ ↓ ↓
+                        Customers Products Orders
+                        │ │ │
+                        ↓ ↓ ↓
+                        METHOD METHOD METHOD
+                        │ │ │
+                        ↓ ↓ ↓
+                        TABLE TABLE TABLE
+                        │ │ │
+                        └──────────┼──────────┘
+                        ↓
+                        RESPONSE
+                        │
+                        ↓
+                        CLIENT</div>
+
+                    <h3>Step-by-step explanation</h3>
+
+                    <ol class="summary-list">
+                        <li>The client sends an HTTP request.</li>
+                        <li>Express receives the request.</li>
+                        <li>Express checks the URL and HTTP method.</li>
+                        <li>The matching route is selected.</li>
+                        <li>The route identifies the required operation.</li>
+                        <li>The required table or data source is accessed.</li>
+                        <li>The operation is completed.</li>
+                        <li>The result is returned as a response to the client.</li>
+                    </ol>
+                </section>
+
+                <section id="summary">
+                    <h2>11. Summary</h2>
+
+                    <p>
+                        The Express.js application can be understood through four
+                        main levels:
+                    </p>
+
+                    <div class="flow">Express.js
+                        ↓
+                        Routing
+                        ↓
+                        HTTP Methods
+                        ↓
+                        Tables</div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Responsibility</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Express.js</strong></td>
+                                <td>Provides the backend framework and handles requests.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Routing</strong></td>
+                                <td>Determines which code should handle a request.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HTTP Methods</strong></td>
+                                <td>Define the operation such as retrieving, creating, updating, or deleting data.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tables</strong></td>
+                                <td>Store the application's data.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="story">
+                        <strong>Final story:</strong>
+                        The Express.js server acts as the entry point of the backend.
+                        When a request arrives, routing determines where that request
+                        should go. The HTTP method explains what operation needs to be
+                        performed. The selected route then works with the appropriate
+                        table or data source. After the operation is completed, the
+                        result is returned to the client as a response.
+                    </div>
+
+                    <div class="note">
+                        <strong>For the actual project:</strong>
+                        The example Customers, Products, Orders, Employees, Suppliers,
+                        and Payments tables should be replaced with the real tables
+                        used by the application. Each real table should then have its
+                        own story, route list, methods, and purpose.
+                    </div>
+                </section>
+
+                <div class="footer">
+                    Express.js Routing & Table Documentation · Project Backend Documentation
+                </div>
+
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
