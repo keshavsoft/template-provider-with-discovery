@@ -18,15 +18,14 @@
             <a href="#introduction">1. Introduction</a>
             <a href="#express">2. What is Express.js?</a>
             <a href="#routing">3. What is Routing?</a>
-            <a href="#api">4. About api</a>
-            <a href="#sub-route">5. About Sub Route</a>
-            <a href="#why-routing">6. Why Different Routes?</a>
-            <a href="#tables">7. Tables in the Application</a>
-            <a href="#relationship">8. Table & Routing Relationship</a>
-            <a href="#methods">9. HTTP Methods</a>
-            <a href="#examples">10. Table-wise Examples</a>
-            <a href="#flow">11. Complete Request Flow</a>
-            <a href="#summary">12. Summary</a>
+            <a href="#sub-route">4. About Sub Route</a>
+            <a href="#why-routing">5. Why Different Routes?</a>
+            <a href="#tables">6. Tables in the Application</a>
+            <a href="#relationship">7. Table & Routing Relationship</a>
+            <a href="#methods">8. HTTP Methods</a>
+            <a href="#examples">9. Table-wise Examples</a>
+            <a href="#flow">10. Complete Request Flow</a>
+            <a href="#summary">11. Summary</a>
         </aside>
 
         <div class="content">
@@ -53,8 +52,8 @@
                     </p>
 
                     <p>
-                        The application uses <a href="https://expressjs.com/"><strong>Express.js</strong></a> as its
-                        backend
+                        The application uses <a
+                            href="https://expressjs.com/"><strong>Express.js</strong></a> as its backend
                         framework.
                         Express receives requests from the client, identifies the requested route,
                         executes the required operation, communicates with the appropriate table or
@@ -102,21 +101,8 @@
                         rel="noopener noreferrer">More Information →</a>
                 </section>
 
-                <section id="openapi" class="compact-section">
-                    <h2>4.About OpenAPI</h2>
-
-                    <p>
-                        OpenAPI is a standard way to describe an API, including its URLs,
-                        HTTP methods, parameters, requests, responses, and data structures.
-                    </p>
-
-                    <a class="more-link" href="https://www.openapis.org/" target="_blank" rel="noopener noreferrer">
-                        More Information →
-                    </a>
-                </section>
-
                 <section id="sub-route" class="compact-section">
-                    <h2>5. About Sub Route</h2>
+                    <h2>4. What Sub Routing</h2>
 
                     <p>
                         A Sub Route is a route defined inside another Router to organize
@@ -131,7 +117,7 @@
                 </section>
 
                 <section id="why-routing">
-                    <h2>6. Why Do We Use Different Routes?</h2>
+                    <h2>5. Why Do We Use Different Routes?</h2>
 
                     <p>
                         A real application normally contains many different types of data.
@@ -159,7 +145,7 @@
                 </section>
 
                 <section id="tables">
-                    <h2>7. Tables in the Application</h2>
+                    <h2>6. Tables in the Application</h2>
 
                     <p>
                         A table represents a particular type of data used by the application.
@@ -210,7 +196,7 @@
                 </section>
 
                 <section id="relationship" class="compact-section">
-                    <h2>8. Table and Routing Relationship</h2>
+                    <h2>7. Table and Routing Relationship</h2>
                     <p>One table can have multiple routes and methods. For example, a Customers table may have GET,
                         POST, PUT, and DELETE operations.</p>
                     <a class="more-link" href="#methods" target="_blank" rel="noopener noreferrer">More Information
@@ -218,7 +204,7 @@
                 </section>
 
                 <section id="methods" class="compact-section">
-                    <h2>9. HTTP Methods</h2>
+                    <h2>8. HTTP Methods</h2>
                     <p>HTTP methods describe the operation a route performs. GET reads, POST creates, PUT updates, and
                         DELETE removes data.</p>
                     <a class="more-link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods"
@@ -226,7 +212,7 @@
                 </section>
 
                 <section id="examples">
-                    <h2>10. Table-wise Examples</h2>
+                    <h2>9. Table-wise Examples</h2>
 
                     <h3>8.1 Customers Table</h3>
 
@@ -364,7 +350,7 @@
 
 
                 <section id="flow" class="compact-section">
-                    <h2>11. Complete Request Flow</h2>
+                    <h2>10. Complete Request Flow</h2>
                     <p>A request normally moves from the client to Express, through the matching router and middleware,
                         into the required logic or table operation, and finally back as a response.</p>
                     <a class="more-link" href="https://expressjs.com/en/guide/using-middleware.html" target="_blank"
@@ -372,7 +358,7 @@
                 </section>
 
                 <section id="summary" class="compact-section">
-                    <h2>12. Summary</h2>
+                    <h2>11. Summary</h2>
                     <p>The application can be understood through four main parts: <strong>Express.js → Routing → HTTP
                             Methods → Tables</strong>. Each part has a specific responsibility.</p>
                     <a class="more-link" href="https://expressjs.com/en/5x/api/" target="_blank"
