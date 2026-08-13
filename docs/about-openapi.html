@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About OpenAPI</title>
+
+   <link rel="stylesheet" href="./css/about-openapi.css">
+</head>
+
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            OpenAPI Documentation
+        </div>
+
+        <div class="brand-subtitle">
+            Simple API Understanding Guide
+        </div>
+
+        <a href="#what-is-openapi">
+            1. What is OpenAPI?
+        </a>
+
+        <a href="#why-openapi">
+            2. Why OpenAPI?
+        </a>
+
+        <a href="#api-description">
+            3. API Description
+        </a>
+
+        <a href="#how-it-works">
+            4. How OpenAPI Works
+        </a>
+
+        <a href="#example">
+            5. Simple Example
+        </a>
+
+        <a href="#benefits">
+            6. Benefits
+        </a>
+
+        <a href="#openapi-files">
+            7. OpenAPI File
+        </a>
+
+        <a href="#express">
+            8. OpenAPI with Express.js
+        </a>
+
+        <a href="#summary">
+            9. Summary
+        </a>
+
+    </aside>
+
+
+    <div class="content">
+
+        <!-- Hero -->
+
+        <header class="hero">
+
+            <span class="label">
+                API Documentation
+            </span>
+
+            <h1>
+                About OpenAPI
+            </h1>
+
+            <p>
+                A simple explanation of OpenAPI and how it helps developers
+                describe, understand, test, and work with HTTP APIs.
+            </p>
+
+        </header>
+
+
+        <main>
+
+
+            <!-- 1 -->
+
+            <section id="what-is-openapi">
+
+                <h2>
+                    1. What is OpenAPI?
+                </h2>
+
+                <p>
+                    OpenAPI is a standard way to describe an HTTP API.
+                    It provides a structured description of the API so that
+                    developers and tools can understand how the API works.
+                </p>
+
+                <div class="story">
+
+                    <strong>
+                        Simple story:
+                    </strong>
+
+                    <p>
+                        Think of an API as a restaurant. The API is the kitchen,
+                        and the OpenAPI document is the menu. The menu tells
+                        customers what is available, what information is needed,
+                        and what they can expect in return.
+                    </p>
+
+                </div>
+
+                <a
+                    class="more-link"
+                    href="https://www.openapis.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    More Information →
+                </a>
+
+            </section>
+
+
+            <!-- 2 -->
+
+            <section id="why-openapi">
+
+                <h2>
+                    2. Why Do We Need OpenAPI?
+                </h2>
+
+                <p>
+                    As an API grows, it becomes difficult to remember every URL,
+                    HTTP method, parameter, request body, and response.
+                    OpenAPI provides one structured place to describe these details.
+                </p>
+
+                <div class="note">
+
+                    <strong>
+                        Without OpenAPI:
+                    </strong>
+
+                    Developers may need to search through source code to understand
+                    how an API works.
+
+                </div>
+
+                <div class="note">
+
+                    <strong>
+                        With OpenAPI:
+                    </strong>
+
+                    Developers and tools can use the API description as a common
+                    reference.
+
+                </div>
+
+            </section>
+
+
+            <!-- 3 -->
+
+            <section id="api-description">
+
+                <h2>
+                    3. API Description
+                </h2>
+
+                <p>
+                    OpenAPI describes important parts of an API, including its
+                    paths, HTTP methods, parameters, request bodies, responses,
+                    and data structures.
+                </p>
+
+                <div class="flow">API
+  │
+  ├── URL / Path
+  │
+  ├── HTTP Method
+  │
+  ├── Parameters
+  │
+  ├── Request Body
+  │
+  ├── Response
+  │
+  └── Data Structure</div>
+
+            </section>
+
+
+            <!-- 4 -->
+
+            <section id="how-it-works">
+
+                <h2>
+                    4. How OpenAPI Works
+                </h2>
+
+                <p>
+                    A developer writes an OpenAPI description that represents
+                    the API. Tools can then read this description and use it
+                    to understand the API.
+                </p>
+
+                <div class="flow">OpenAPI Document
+        ↓
+     API Description
+        ↓
+      OpenAPI Tools
+        ↓
+ ┌──────┼────────┐
+ ↓      ↓        ↓
+Docs   Tests   Client Code</div>
+
+                <p>
+                    This means the same API description can be useful for
+                    developers, testers, documentation tools, and other
+                    API-related tools.
+                </p>
+
+            </section>
+
+
+            <!-- 5 -->
+
+            <section id="example">
+
+                <h2>
+                    5. Simple OpenAPI Example
+                </h2>
+
+                <p>
+                    Suppose our Express.js application has the following API:
+                </p>
+
+                <pre><code>GET /api/v1/doctors/showAll</code></pre>
+
+                <p>
+                    An OpenAPI document can describe this endpoint like this:
+                </p>
+
+                <pre><code>openapi: 3.0.3
+
+info:
+  title: Doctors API
+  version: 1.0.0
+
+paths:
+
+  /api/v1/doctors/showAll:
+
+    get:
+      summary: Get all doctors
+
+      responses:
+
+        '200':
+          description: Doctors retrieved successfully</code></pre>
+
+                <p>
+                    The OpenAPI document tells us that the API has a particular
+                    path, uses the GET method, and can return a successful response.
+                </p>
+
+            </section>
+
+
+            <!-- 6 -->
+
+            <section id="benefits">
+
+                <h2>
+                    6. Benefits of OpenAPI
+                </h2>
+
+                <div class="benefits">
+
+                    <div class="benefit">
+
+                        <strong>
+                            Understand APIs
+                        </strong>
+
+                        Developers can understand how an API works
+                        without reading all of the backend code.
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <strong>
+                            Generate Client Code
+                        </strong>
+
+                        OpenAPI descriptions can be used by tools
+                        to generate client code.
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <strong>
+                            Create Tests
+                        </strong>
+
+                        API descriptions can help tools and teams
+                        create and validate API tests.
+
+                    </div>
+
+                </div>
+
+                <p>
+                    The OpenAPI Initiative also highlights common tool support,
+                    shared developer knowledge, and abstraction of API descriptions
+                    as important benefits. :contentReference[oaicite:1]{index=1}
+                </p>
+
+            </section>
+
+
+            <!-- 7 -->
+
+            <section id="openapi-files">
+
+                <h2>
+                    7. OpenAPI File
+                </h2>
+
+                <p>
+                    An OpenAPI description is commonly written in
+                    <strong>YAML</strong> or <strong>JSON</strong>.
+                    The file describes the API in a structured format.
+                </p>
+
+                <pre><code>openapi.yaml
+
+openapi: 3.0.3
+
+info:
+  title: Doctors API
+  version: 1.0.0
+
+paths:
+  /api/v1/doctors:
+    get:
+      summary: Get doctors</code></pre>
+
+                <div class="note">
+
+                    <strong>
+                        Important:
+                    </strong>
+
+                    OpenAPI describes the API. It does not replace your
+                    Express.js routes or controllers.
+
+                </div>
+
+            </section>
+
+
+            <!-- 8 -->
+
+            <section id="express">
+
+                <h2>
+                    8. OpenAPI with Express.js
+                </h2>
+
+                <p>
+                    In an Express.js project, Express handles the actual API
+                    requests, while OpenAPI can describe those APIs in a
+                    standard format.
+                </p>
+
+                <div class="flow">Client
+   ↓
+Express.js
+   ↓
+Router
+   ↓
+Controller
+   ↓
+Database
+
+
+OpenAPI
+   ↓
+Describes the API above</div>
+
+                <p>
+                    So OpenAPI and Express.js have different responsibilities.
+                    Express.js runs the API, while OpenAPI describes the API.
+                </p>
+
+            </section>
+
+
+            <!-- 9 -->
+
+            <section id="summary">
+
+                <h2>
+                    9. Summary
+                </h2>
+
+                <div class="story">
+
+                    <strong>
+                        The simple story:
+                    </strong>
+
+                    <p>
+                        Express.js is responsible for running the API.
+                        OpenAPI provides a standard description of that API.
+                        The description explains the available URLs, methods,
+                        parameters, requests, responses, and data structures.
+                    </p>
+
+                    <p>
+                        Because the API description follows a standard format,
+                        people and tools can understand and work with the API
+                        more easily.
+                    </p>
+
+                </div>
+
+                <a
+                    class="more-link"
+                    href="https://www.openapis.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Visit OpenAPI Initiative →
+                </a>
+
+            </section>
+
+
+            <div class="footer">
+
+                OpenAPI Documentation · Simple API Understanding Guide
+
+            </div>
+
+
+        </main>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
